@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-nunito: 'Nunito', sans-serif;
+  --font-fredoka: 'Fredoka One', cursive;
+}
+
+body {
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.font-fredoka {
+  font-family: var(--font-fredoka), cursive;
+}
+
+.font-nunito {
+  font-family: var(--font-nunito), sans-serif;
+}
+
+/* Quiz bot special glow shadow */
+.quiz-bot-shadow {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 100px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.8);
+}
+
+/* Story text reading styles */
+.story-text {
+  font-size: 1.25rem;
+  line-height: 2;
+  letter-spacing: 0.01em;
+  color: #374151;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Floating animation for decorative elements */
+.animate-float-1 {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float 4s ease-in-out infinite 0.5s;
+}
+
+.animate-float-3 {
+  animation: float 3.5s ease-in-out infinite 1s;
+}
+
+.animate-float-4 {
+  animation: float 5s ease-in-out infinite 1.5s;
+}
+
+/* Sound wave bars */
+.sound-bar {
+  width: 4px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.sound-bar:nth-child(1) { animation: sound-wave 0.8s ease-in-out infinite; }
+.sound-bar:nth-child(2) { animation: sound-wave 0.8s ease-in-out infinite 0.1s; }
+.sound-bar:nth-child(3) { animation: sound-wave 0.8s ease-in-out infinite 0.2s; }
+.sound-bar:nth-child(4) { animation: sound-wave 0.8s ease-in-out infinite 0.3s; }
+.sound-bar:nth-child(5) { animation: sound-wave 0.8s ease-in-out infinite 0.4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(-3deg); }
+  66% { transform: translateY(-4px) rotate(3deg); }
+}
+
+@keyframes sound-wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1.5); }
+}
+
+/* Celebration sparkle */
+@keyframes sparkle-pop {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.animate-sparkle-pop {
+  animation: sparkle-pop 0.5s ease-out forwards;
+}
+
+/* Confetti pieces */
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  position: fixed;
+  animation: confetti-fall 3s linear forwards;
+  z-index: 9999;
+  font-size: 1.5rem;
+  pointer-events: none;
+}
