@@ -63,3 +63,19 @@ export interface Level {
   maxPoints: number;
   color: string;
 }
+
+export interface CommunityStory {
+  id: string;
+  title: string;
+  text: string;
+  coverEmoji: string;
+  coverGradient: string;
+  authorName: string;
+  authorLevel: number;
+  authorLevelName: string;
+  authorLevelEmoji: string;
+  publishedAt: string;
+  readCount: number;
+  requiredLevel: number;
+  ageRange: string;
+}

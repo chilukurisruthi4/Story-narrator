@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProgress } from '@/context/ProgressContext';
+import { publishStory } from '@/lib/communityStories';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -19,7 +20,7 @@ const SUGGESTION_CHIPS = [
 ];
 
 export default function StoryCreator() {
-  const { progress, updateStory } = useProgress();
+  const { progress, updateStory, addPoints } = useProgress();
   const [title, setTitle] = useState('');
   const [storyText, setStoryText] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -32,6 +33,9 @@ export default function StoryCreator() {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showFinished, setShowFinished] = useState(false);
+  const [showPublishModal, setShowPublishModal] = useState(false);
+  const [authorName, setAuthorName] = useState('');
+  const [publishedSuccess, setPublishedSuccess] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -122,7 +126,6 @@ export default function StoryCreator() {
   const handleFinish = () => {
     if (!title.trim() && !storyText.trim()) return;
     setShowFinished(true);
-    // Increment created stories count
     try {
       const stored = localStorage.getItem('storyland_progress');
       if (stored) {
@@ -133,6 +136,14 @@ export default function StoryCreator() {
     } catch {
       // ignore
     }
+  };
+
+  const handlePublish = () => {
+    if (!authorName.trim()) return;
+    publishStory(title || 'My Amazing Story', storyText, authorName.trim(), progress.totalPoints);
+    addPoints(50);
+    setPublishedSuccess(true);
+    setShowPublishModal(false);
   };
 
   const wordCount = storyText.trim().split(/\s+/).filter(Boolean).length;
@@ -157,9 +168,25 @@ export default function StoryCreator() {
                 {storyText || '(Your story is waiting to be written!)'}
               </p>
             </div>
-            <p className="text-purple-600 font-semibold mb-4">
+            <p className="text-purple-600 font-semibold mb-2">
               🌟 Amazing work! You wrote {wordCount} words!
             </p>
+
+            {publishedSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-green-100 border-2 border-green-300 rounded-2xl p-3 mb-4"
+              >
+                <p className="text-green-700 font-bold text-lg">🎉 Published to the Community!</p>
+                <p className="text-green-600 text-sm">+50 points earned! Other kids can now read your story!</p>
+              </motion.div>
+            ) : (
+              <p className="text-gray-500 text-sm mb-4">
+                Share your story with other kids and earn <strong>+50 points</strong>!
+              </p>
+            )}
+
             <div className="flex gap-3 justify-center flex-wrap">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -169,6 +196,18 @@ export default function StoryCreator() {
               >
                 ✏️ Keep Editing
               </motion.button>
+
+              {!publishedSuccess && (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowPublishModal(true)}
+                  className="bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-white font-bold px-6 py-2.5 rounded-full transition-colors shadow-md"
+                >
+                  🌍 Publish to Community
+                </motion.button>
+              )}
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -176,6 +215,7 @@ export default function StoryCreator() {
                   setTitle('');
                   setStoryText('');
                   setShowFinished(false);
+                  setPublishedSuccess(false);
                   setMessages([
                     {
                       role: 'assistant',
@@ -189,6 +229,68 @@ export default function StoryCreator() {
                 🆕 New Story
               </motion.button>
             </div>
+
+            {/* Publish Modal */}
+            <AnimatePresence>
+              {showPublishModal && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+                  onClick={() => setShowPublishModal(false)}
+                >
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border-4 border-yellow-300"
+                  >
+                    <div className="text-5xl mb-3">🌍</div>
+                    <h3 className="font-fredoka text-2xl font-bold text-gray-800 mb-1">
+                      Publish Your Story!
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">
+                      Kids with <strong>Level 2+</strong> will be able to read your story.
+                      You earn <strong>10 bonus points</strong> every time someone reads it!
+                    </p>
+                    <div className="mb-4 text-left">
+                      <label className="block text-sm font-bold text-gray-600 mb-1">
+                        Your author name:
+                      </label>
+                      <input
+                        type="text"
+                        value={authorName}
+                        onChange={(e) => setAuthorName(e.target.value.slice(0, 20))}
+                        placeholder="e.g. StoryKid_Alex"
+                        maxLength={20}
+                        className="w-full border-2 border-purple-200 rounded-xl px-3 py-2 focus:border-purple-400 focus:outline-none font-medium"
+                        autoFocus
+                      />
+                      <p className="text-xs text-gray-400 mt-1">{authorName.length}/20 characters</p>
+                    </div>
+                    <div className="flex gap-2 justify-center">
+                      <button
+                        onClick={() => setShowPublishModal(false)}
+                        className="px-5 py-2 rounded-full border-2 border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={handlePublish}
+                        disabled={!authorName.trim()}
+                        className="px-5 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                      >
+                        🚀 Publish Now! (+50 pts)
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         ) : (
           <motion.div
