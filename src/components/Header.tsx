@@ -38,6 +38,13 @@ export default function Header() {
             <span className="hidden sm:inline">✏️</span>
             <span>Create</span>
           </Link>
+          <Link
+            href="/grammar"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold text-green-700 hover:bg-green-100 transition-colors"
+          >
+            <span className="hidden sm:inline">📝</span>
+            <span>Grammar</span>
+          </Link>
         </nav>
 
         {/* Progress */}

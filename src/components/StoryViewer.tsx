@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Story, QuizQuestion } from '@/types';
 import { useProgress } from '@/context/ProgressContext';
 import { getLevelFromPoints } from '@/lib/levels';
+import { generatePuzzlesForStory } from '@/lib/puzzles';
 import AudioPlayer from './AudioPlayer';
 import VideoScene from './VideoScene';
 import TextReader from './TextReader';
 import QuizBot from './QuizBot';
 import LevelUpModal from './LevelUpModal';
+import StoryPuzzle from './StoryPuzzle';
 import clsx from 'clsx';
 
 interface Props {
@@ -27,6 +29,8 @@ const modeConfig = {
 
 export default function StoryViewer({ story, initialMode = 'read' }: Props) {
   const { progress, addPoints, completeStory, updateStory } = useProgress();
+  const [showPuzzles, setShowPuzzles] = useState(false);
+  const puzzles = generatePuzzlesForStory(story);
 
   const savedProgress = progress.storyProgress[story.id];
   const [currentSegmentIndex, setCurrentSegmentIndex] = useState(
@@ -80,22 +84,26 @@ export default function StoryViewer({ story, initialMode = 'read' }: Props) {
   const advanceSegment = useCallback(() => {
     const nextIndex = currentSegmentIndex + 1;
     if (nextIndex >= totalSegments) {
-      // Story complete!
-      const oldLevel = getLevelFromPoints(progress.totalPoints);
-      addPoints(story.pointsReward);
-      completeStory(story.id);
-      const newLvl = getLevelFromPoints(progress.totalPoints + story.pointsReward);
-      if (newLvl.level > oldLevel.level) {
-        setNewLevel(newLvl);
-        setShowLevelUp(true);
+      // Show puzzles first if available, then complete
+      if (puzzles.length > 0 && !showPuzzles) {
+        setShowPuzzles(true);
+      } else {
+        const oldLevel = getLevelFromPoints(progress.totalPoints);
+        addPoints(story.pointsReward);
+        completeStory(story.id);
+        const newLvl = getLevelFromPoints(progress.totalPoints + story.pointsReward);
+        if (newLvl.level > oldLevel.level) {
+          setNewLevel(newLvl);
+          setShowLevelUp(true);
+        }
+        setEarnedPoints((prev) => prev + story.pointsReward);
+        setIsComplete(true);
       }
-      setEarnedPoints((prev) => prev + story.pointsReward);
-      setIsComplete(true);
     } else {
       setCurrentSegmentIndex(nextIndex);
       setVideoPlaying(false);
     }
-  }, [currentSegmentIndex, totalSegments, story, progress.totalPoints, addPoints, completeStory]);
+  }, [currentSegmentIndex, totalSegments, story, progress.totalPoints, addPoints, completeStory, puzzles.length, showPuzzles]);
 
   const handlePrevious = () => {
     if (currentSegmentIndex > 0) {
@@ -146,6 +154,55 @@ export default function StoryViewer({ story, initialMode = 'read' }: Props) {
     setMode(newMode);
     setVideoPlaying(false);
   };
+
+  // Show puzzle challenge between story end and completion screen
+  if (showPuzzles && !isComplete) {
+    return (
+      <div className="space-y-4">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl px-4 py-3 flex items-center gap-3">
+          <span className="text-3xl">🧩</span>
+          <div>
+            <p className="font-fredoka font-bold text-white text-lg leading-tight">Puzzle Time!</p>
+            <p className="text-indigo-100 text-xs">Test your brain before finishing the story!</p>
+          </div>
+        </div>
+        <StoryPuzzle
+          puzzles={puzzles}
+          onComplete={(pts) => {
+            if (pts > 0) {
+              addPoints(pts);
+              setEarnedPoints((prev) => prev + pts);
+            }
+            const oldLevel = getLevelFromPoints(progress.totalPoints);
+            addPoints(story.pointsReward);
+            completeStory(story.id);
+            const newLvl = getLevelFromPoints(progress.totalPoints + story.pointsReward + pts);
+            if (newLvl.level > oldLevel.level) {
+              setNewLevel(newLvl);
+              setShowLevelUp(true);
+            }
+            setEarnedPoints((prev) => prev + story.pointsReward);
+            setShowPuzzles(false);
+            setIsComplete(true);
+          }}
+          onSkip={() => {
+            const oldLevel = getLevelFromPoints(progress.totalPoints);
+            addPoints(story.pointsReward);
+            completeStory(story.id);
+            const newLvl = getLevelFromPoints(progress.totalPoints + story.pointsReward);
+            if (newLvl.level > oldLevel.level) {
+              setNewLevel(newLvl);
+              setShowLevelUp(true);
+            }
+            setEarnedPoints((prev) => prev + story.pointsReward);
+            setShowPuzzles(false);
+            setIsComplete(true);
+          }}
+        />
+        {showLevelUp && <LevelUpModal level={newLevel} onClose={() => setShowLevelUp(false)} />}
+      </div>
+    );
+  }
 
   if (isComplete) {
     return (
