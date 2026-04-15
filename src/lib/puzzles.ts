@@ -26,7 +26,7 @@ function extractScrambleWords(text: string, count = 5): ScrambleWord[] {
     .map((w) => w.toLowerCase());
 
   // Deduplicate
-  const unique = [...new Set(words)];
+  const unique = Array.from(new Set(words));
 
   // Shuffle and pick
   for (let i = unique.length - 1; i > 0; i--) {
