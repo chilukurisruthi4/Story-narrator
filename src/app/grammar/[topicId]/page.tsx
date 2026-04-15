@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header';
 import GrammarExercise from '@/components/GrammarExercise';
+import GrammarVideo from '@/components/GrammarVideo';
 import { getTopicById } from '@/lib/grammarLessons';
+import { getVideoForTopic } from '@/lib/grammarVideos';
 import { getTopicProgress, markExerciseComplete } from '@/lib/grammarProgress';
 import { useProgress } from '@/context/ProgressContext';
 
-type PageState = 'intro' | 'exercises' | 'complete';
+type PageState = 'video' | 'intro' | 'exercises' | 'complete';
 
 const CONFETTI_EMOJIS = ['🌟', '🎉', '⭐', '🎊', '✨', '🏆', '🎵', '💫'];
 
@@ -21,7 +23,7 @@ export default function TopicPage() {
   const topic = getTopicById(topicId);
 
   const { addPoints } = useProgress();
-  const [pageState, setPageState] = useState<PageState>('intro');
+  const [pageState, setPageState] = useState<PageState>('video');
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [sessionPoints, setSessionPoints] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
@@ -90,8 +92,10 @@ export default function TopicPage() {
   const handleRestart = () => {
     setExerciseIndex(0);
     setSessionPoints(0);
-    setPageState('intro');
+    setPageState('video');
   };
+
+  const videoData = getVideoForTopic(topicId);
 
   return (
     <div className="min-h-screen">
@@ -141,6 +145,30 @@ export default function TopicPage() {
         </motion.div>
 
         <AnimatePresence mode="wait">
+          {/* VIDEO STATE */}
+          {pageState === 'video' && (
+            <motion.div
+              key="video"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+            >
+              {videoData ? (
+                <GrammarVideo
+                  video={videoData}
+                  onComplete={() => setPageState('intro')}
+                />
+              ) : (
+                // No video for this topic — skip straight to intro
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  onAnimationComplete={() => setPageState('intro')}
+                />
+              )}
+            </motion.div>
+          )}
+
           {/* INTRO STATE */}
           {pageState === 'intro' && (
             <motion.div
