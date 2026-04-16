@@ -8,7 +8,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'n1',
-        duration: 3,
+        duration: 5,
         background: 'from-blue-400 to-cyan-300',
         sceneEmoji: '🏷️',
         ambientEmojis: ['✨', '⭐', '💫'],
@@ -18,7 +18,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'n2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-emerald-300',
         sceneEmoji: '🐶',
         ambientEmojis: ['🌿', '🌸', '🍃'],
@@ -30,7 +30,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'n3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-orange-400 to-amber-300',
         sceneEmoji: '🏙️',
         ambientEmojis: ['🌟', '🏠', '🌆'],
@@ -42,7 +42,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'n4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-purple-400 to-pink-300',
         sceneEmoji: '👩‍🏫',
         ambientEmojis: ['📚', '✏️', '🍎'],
@@ -54,7 +54,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'n5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-yellow-400 to-orange-300',
         sceneEmoji: '🍎',
         ambientEmojis: ['🍊', '🍇', '🍓'],
@@ -66,7 +66,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'n6',
-        duration: 4,
+        duration: 7,
         background: 'from-blue-500 to-cyan-400',
         sceneEmoji: '🧠',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -84,7 +84,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'v1',
-        duration: 3,
+        duration: 5,
         background: 'from-yellow-400 to-orange-300',
         sceneEmoji: '⚡',
         ambientEmojis: ['💥', '✨', '🔥'],
@@ -94,7 +94,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'v2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-teal-300',
         sceneEmoji: '🐸',
         ambientEmojis: ['💦', '🌿', '🌊'],
@@ -106,7 +106,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'v3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-sky-400 to-blue-300',
         sceneEmoji: '🐦',
         ambientEmojis: ['☁️', '🌤️', '⭐'],
@@ -118,7 +118,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'v4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-pink-400 to-rose-300',
         sceneEmoji: '📖',
         ambientEmojis: ['✨', '💫', '🌟'],
@@ -130,7 +130,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'v5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-purple-400 to-indigo-300',
         sceneEmoji: '🏃',
         ambientEmojis: ['💨', '⚡', '🌟'],
@@ -142,7 +142,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'v6',
-        duration: 4,
+        duration: 7,
         background: 'from-yellow-500 to-orange-400',
         sceneEmoji: '⚡',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -160,7 +160,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'a1',
-        duration: 3,
+        duration: 5,
         background: 'from-pink-400 to-rose-300',
         sceneEmoji: '🎨',
         ambientEmojis: ['🌈', '✨', '💫'],
@@ -170,7 +170,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'a2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-gray-500 to-slate-400',
         sceneEmoji: '🐘',
         ambientEmojis: ['🌿', '🌳', '🍃'],
@@ -182,7 +182,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'a3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-yellow-400 to-amber-300',
         sceneEmoji: '🌟',
         ambientEmojis: ['✨', '💫', '⭐'],
@@ -194,7 +194,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'a4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-orange-400 to-red-300',
         sceneEmoji: '🏠',
         ambientEmojis: ['🕯️', '☕', '🧸'],
@@ -206,7 +206,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'a5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-teal-300',
         sceneEmoji: '🐁',
         ambientEmojis: ['🌿', '🍃', '🌱'],
@@ -218,7 +218,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'a6',
-        duration: 4,
+        duration: 7,
         background: 'from-pink-500 to-rose-400',
         sceneEmoji: '🎨',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -236,7 +236,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'pr1',
-        duration: 3,
+        duration: 5,
         background: 'from-purple-400 to-violet-300',
         sceneEmoji: '🔄',
         ambientEmojis: ['✨', '💫', '🌀'],
@@ -246,7 +246,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pr2',
-        duration: 4,
+        duration: 7,
         background: 'from-blue-400 to-indigo-300',
         sceneEmoji: '👦',
         ambientEmojis: ['⭐', '🎈', '🌟'],
@@ -258,7 +258,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pr3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-pink-400 to-fuchsia-300',
         sceneEmoji: '👧',
         ambientEmojis: ['🌸', '🌺', '💐'],
@@ -270,7 +270,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pr4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-emerald-300',
         sceneEmoji: '👨‍👩‍👧‍👦',
         ambientEmojis: ['🏡', '🌳', '☀️'],
@@ -282,7 +282,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pr5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-amber-400 to-yellow-300',
         sceneEmoji: '🐱',
         ambientEmojis: ['🌙', '⭐', '🌟'],
@@ -294,7 +294,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pr6',
-        duration: 4,
+        duration: 7,
         background: 'from-purple-500 to-violet-400',
         sceneEmoji: '🔄',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -312,7 +312,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'ad1',
-        duration: 3,
+        duration: 5,
         background: 'from-teal-400 to-green-300',
         sceneEmoji: '🌊',
         ambientEmojis: ['💨', '🌀', '✨'],
@@ -322,7 +322,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'ad2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-orange-400 to-amber-300',
         sceneEmoji: '🐢',
         ambientEmojis: ['🍃', '🌿', '🌱'],
@@ -334,7 +334,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'ad3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-blue-400 to-sky-300',
         sceneEmoji: '🪥',
         ambientEmojis: ['💧', '✨', '⭐'],
@@ -346,7 +346,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'ad4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-pink-400 to-rose-300',
         sceneEmoji: '🐰',
         ambientEmojis: ['💨', '⚡', '🌟'],
@@ -358,7 +358,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'ad5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-indigo-400 to-purple-300',
         sceneEmoji: '🔊',
         ambientEmojis: ['🎵', '🎶', '🎸'],
@@ -370,7 +370,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'ad6',
-        duration: 4,
+        duration: 7,
         background: 'from-teal-500 to-green-400',
         sceneEmoji: '🌊',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -388,7 +388,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'pu1',
-        duration: 3,
+        duration: 5,
         background: 'from-red-400 to-pink-300',
         sceneEmoji: '📍',
         ambientEmojis: ['❓', '❗', '💬'],
@@ -398,7 +398,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pu2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-blue-400 to-indigo-300',
         sceneEmoji: '🔵',
         ambientEmojis: ['✏️', '📝', '📄'],
@@ -411,7 +411,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pu3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-yellow-400 to-amber-300',
         sceneEmoji: '❓',
         ambientEmojis: ['🤔', '💭', '🌟'],
@@ -424,7 +424,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pu4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-orange-400 to-red-300',
         sceneEmoji: '❗',
         ambientEmojis: ['🎉', '🎊', '💥'],
@@ -437,7 +437,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pu5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-teal-300',
         sceneEmoji: '✏️',
         ambientEmojis: ['📚', '📖', '🎓'],
@@ -449,7 +449,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'pu6',
-        duration: 4,
+        duration: 7,
         background: 'from-red-500 to-pink-400',
         sceneEmoji: '📍',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -467,7 +467,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'se1',
-        duration: 3,
+        duration: 5,
         background: 'from-indigo-400 to-blue-300',
         sceneEmoji: '🔨',
         ambientEmojis: ['🧱', '⚙️', '✨'],
@@ -477,7 +477,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'se2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-purple-400 to-pink-300',
         sceneEmoji: '👤',
         ambientEmojis: ['⭐', '💡', '🌟'],
@@ -489,7 +489,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'se3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-teal-300',
         sceneEmoji: '⚡',
         ambientEmojis: ['💨', '🏃', '✨'],
@@ -501,7 +501,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'se4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-amber-400 to-yellow-300',
         sceneEmoji: '🔤',
         ambientEmojis: ['✏️', '📝', '🌟'],
@@ -513,7 +513,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'se5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-rose-400 to-red-300',
         sceneEmoji: '✅',
         ambientEmojis: ['🎉', '⭐', '🌈'],
@@ -525,7 +525,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'se6',
-        duration: 4,
+        duration: 7,
         background: 'from-indigo-500 to-blue-400',
         sceneEmoji: '🔨',
         ambientEmojis: ['💡', '⭐', '🌈'],
@@ -543,7 +543,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
     frames: [
       {
         id: 'rh1',
-        duration: 3,
+        duration: 5,
         background: 'from-amber-400 to-yellow-300',
         sceneEmoji: '🎵',
         ambientEmojis: ['🎶', '🎸', '🎤'],
@@ -553,7 +553,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'rh2',
-        duration: 3.5,
+        duration: 6,
         background: 'from-pink-400 to-rose-300',
         sceneEmoji: '🐱',
         ambientEmojis: ['🎩', '🏏', '🪑'],
@@ -565,7 +565,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'rh3',
-        duration: 3.5,
+        duration: 6,
         background: 'from-blue-400 to-sky-300',
         sceneEmoji: '🌳',
         ambientEmojis: ['🐝', '🌿', '🌸'],
@@ -577,7 +577,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'rh4',
-        duration: 3.5,
+        duration: 6,
         background: 'from-indigo-400 to-purple-300',
         sceneEmoji: '🌙',
         ambientEmojis: ['⭐', '✨', '🌟'],
@@ -589,7 +589,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'rh5',
-        duration: 3.5,
+        duration: 6,
         background: 'from-green-400 to-emerald-300',
         sceneEmoji: '🎤',
         ambientEmojis: ['🎵', '🎶', '✨'],
@@ -601,7 +601,7 @@ export const GRAMMAR_VIDEOS: GrammarVideoData[] = [
       },
       {
         id: 'rh6',
-        duration: 4,
+        duration: 7,
         background: 'from-amber-500 to-yellow-400',
         sceneEmoji: '🎵',
         ambientEmojis: ['💡', '⭐', '🌈'],

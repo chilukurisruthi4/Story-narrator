@@ -150,6 +150,25 @@ function VideoFrame({ frame, isActive }: { frame: GrammarVideoFrame; isActive: b
   );
 }
 
+function speakFrame(frame: GrammarVideoFrame) {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const text = [frame.speechBubble, frame.caption, frame.exampleSentence]
+    .filter(Boolean)
+    .join('. ');
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.88;
+  utter.pitch = 1.15;
+  utter.volume = 1;
+  // Pick a friendly voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(
+    (v) => v.lang.startsWith('en') && (v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Moira') || v.name.includes('Google US'))
+  ) || voices.find((v) => v.lang.startsWith('en'));
+  if (preferred) utter.voice = preferred;
+  window.speechSynthesis.speak(utter);
+}
+
 export default function GrammarVideo({ video, onComplete }: Props) {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [playing, setPlaying] = useState(true);
@@ -169,11 +188,19 @@ export default function GrammarVideo({ video, onComplete }: Props) {
   }, [frames.length]);
 
   useEffect(() => {
-    if (!playing || finished) return;
-    const duration = frames[currentFrame]?.duration ?? 3;
+    if (!playing || finished) {
+      if (!playing) window.speechSynthesis?.cancel();
+      return;
+    }
+    const frame = frames[currentFrame];
+    if (frame) speakFrame(frame);
+    const duration = frame?.duration ?? 5;
     timerRef.current = setTimeout(advanceFrame, duration * 1000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [playing, currentFrame, finished, advanceFrame, frames]);
+
+  // Cancel speech on unmount
+  useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
 
   const togglePlay = () => {
     if (finished) {
@@ -187,8 +214,9 @@ export default function GrammarVideo({ video, onComplete }: Props) {
 
   const goToFrame = (i: number) => {
     if (timerRef.current) clearTimeout(timerRef.current);
+    window.speechSynthesis?.cancel();
     setCurrentFrame(i);
-    setFinished(i >= frames.length - 1 && false);
+    setFinished(false);
     setPlaying(true);
   };
 
